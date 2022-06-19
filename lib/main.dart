@@ -91,7 +91,6 @@ class MyApp extends StatelessWidget {
             iconTheme: const IconThemeData(
               color: Colors.white54,
             ),
-            color
             scaffoldBackgroundColor: const Color(0xFF0D0D0D),
             primarySwatch: AppColors.themeColor,
           ),
