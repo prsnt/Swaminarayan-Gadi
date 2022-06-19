@@ -2,7 +2,7 @@
     package="com.wli.appstructure">
    <application
         android:usesCleartextTraffic="true"
-        android:label="appstructure"
+        android:label="Swaminarayan Gadi"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"

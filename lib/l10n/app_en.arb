@@ -1,0 +1,9 @@
+{
+    "@@locale": "en",
+    "helloWorld": "Hello World!",
+    "locations": "Locations",
+    "about_us": "About Us",
+    "contact_us": "Contact Us",
+    "terms_service": "Terms & Service",
+    "privacy_policy": "Privacy Policy"
+}

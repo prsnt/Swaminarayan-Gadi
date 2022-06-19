@@ -4,6 +4,7 @@ import 'package:appstructure/constants/assets.dart';
 import 'package:appstructure/constants/colors.dart';
 import 'package:appstructure/routes.dart';
 import 'package:flutter/material.dart';
+import 'package:appstructure/utils/dimentions.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -44,7 +45,7 @@ class SplashScreenState extends State<SplashScreen>
     _animation.addListener(() => setState(() {}));
     _animationController.forward();
 
-    startTime();
+    //startTime();
 
     setState(() {
       _visible = !_visible;
@@ -53,39 +54,48 @@ class SplashScreenState extends State<SplashScreen>
 
   @override
   Widget build(BuildContext context) {
-    ScreenUtil.init(
-        BoxConstraints(
-            maxWidth: MediaQuery.of(context).size.width,
-            maxHeight: MediaQuery.of(context).size.height),
-        designSize: Size(MediaQuery.of(context).size.width, MediaQuery.of(context).size.height),
-        orientation: Orientation.portrait);
+    double screenWidth = MediaQuery.of(context).size.width;
+    double screenHeight = MediaQuery.of(context).size.height;
     return Scaffold(
-      backgroundColor: AppColors.orangeColor,
       body: Stack(
-        fit: StackFit.expand,
-        children: <Widget>[
-          Column(
-            mainAxisAlignment: MainAxisAlignment.end,
-            mainAxisSize: MainAxisSize.min,
-            children: const <Widget>[
-              Padding(
-                  padding: EdgeInsets.only(bottom: 30.0),
-                  child: Text(
-                    'Version 1.0',
-                    style: TextStyle(color: Colors.white),
-                  ))
-            ],
-          ),
-          Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Image.asset(
-                Assets.logo,
+        children: [
+          Positioned.fill(
+            child: Container(
+              decoration: const BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage('assets/images/background_splash.jpg'),
+                  fit: BoxFit.cover,
+                ),
               ),
-              const SizedBox(height: 50,),
-              const CircularProgressIndicator(),
-            ],
+              child: Padding(
+                padding: EdgeInsets.only(top: Dimentions.heightMargin70),
+                child: Column(
+                  children: [
+                    FractionallySizedBox(
+                        widthFactor: 0.4,
+                        child: Image.asset('assets/images/logo.png')),
+                    Padding(
+                      padding: EdgeInsets.only(top: Dimentions.heightMargin25),
+                      child: Image.asset('assets/images/app_name.png'),
+                    ),
+                  ],
+                ),
+              ),
+            ),
           ),
+          Container(
+            child: Image.asset('assets/images/maninagar_temple.png'),
+            alignment: Alignment.bottomCenter,
+          ),
+          Align(
+              alignment: Alignment.bottomCenter,
+              child: Padding(
+                padding: EdgeInsets.only(bottom: Dimentions.heightMargin25),
+                child: Text(
+                  'Version 1.5',
+                  style: TextStyle(color: Colors.white, fontSize: 16.sp),
+                ),
+              )),
         ],
       ),
     );
