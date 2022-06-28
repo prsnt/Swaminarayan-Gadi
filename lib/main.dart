@@ -3,6 +3,7 @@ import 'package:appstructure/ui/home/dash.dart';
 import 'package:appstructure/ui/home/tab_home_screen.dart';
 import 'package:appstructure/ui/more/more.dart';
 import 'package:appstructure/ui/splash/splash.dart';
+import 'package:appstructure/utils/size_config.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -109,7 +110,7 @@ class MyApp extends StatelessWidget {
             brightness: Brightness.light,
             primarySwatch: AppColors.themeColor,
           ),
-          home: More(),
+          home: Dashboard(),
           routes: Routes.routes,
         );
       },
@@ -134,6 +135,7 @@ class _MyAppState extends State with WidgetsBindingObserver {
 
   @override
   void initState() {
+    SizeConfig().init(context);
     WidgetsBinding.instance.addObserver(this);
     _brightness = WidgetsBinding.instance.window.platformBrightness;
     super.initState();

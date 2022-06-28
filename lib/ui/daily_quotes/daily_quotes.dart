@@ -26,7 +26,6 @@ class _DailyQuotesState extends State<DailyQuotes> {
 
   Widget cell(String quote,String from) {
     return Container(
-
         margin: const EdgeInsets.all(15.0),
         decoration: const BoxDecoration(
           image: DecorationImage(
