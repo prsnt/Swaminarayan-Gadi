@@ -1,6 +1,7 @@
 import 'dart:ffi';
 import 'dart:ui';
 
+import 'package:appstructure/utils/custom_colors.dart';
 import 'package:appstructure/utils/dimentions.dart';
 import 'package:appstructure/utils/size_config.dart';
 import 'package:carousel_slider/carousel_slider.dart';
@@ -8,14 +9,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class Dashboard extends StatefulWidget {
-  const Dashboard({Key? key}) : super(key: key);
+class Home extends StatefulWidget {
+  const Home({Key? key}) : super(key: key);
 
   @override
-  State<Dashboard> createState() => _DashboardState();
+  State<Home> createState() => _HomeState();
 }
 
-class _DashboardState extends State<Dashboard> {
+class _HomeState extends State<Home> {
   int _current = 0;
   final List<String> imgList = [
     'assets/images/banner_dashboard.jpg',
@@ -26,7 +27,7 @@ class _DashboardState extends State<Dashboard> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFFFFAF4),
+      backgroundColor: CustomColors.ColorWhite,
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(
@@ -196,7 +197,7 @@ class _DashboardState extends State<Dashboard> {
               style: TextStyle(
                 fontSize: 13.sp,
                 fontWeight: FontWeight.w500,
-                color: Color(0xFF5B5D62),
+                color: CustomColors.FontColorGray2,
               ),
             ),
           ),
@@ -231,7 +232,7 @@ class _DashboardState extends State<Dashboard> {
                 style: TextStyle(
                   fontSize: 16.sp,
                   fontWeight: FontWeight.w500,
-                  color: Color(0xFF5B5D62),
+                  color: CustomColors.FontColorGray2,
                 ),
               ),
             ),
@@ -278,7 +279,7 @@ class _DashboardState extends State<Dashboard> {
                         style: TextStyle(
                           fontSize: 14.sp,
                           fontWeight: FontWeight.w500,
-                          color: Colors.white,
+                          color: CustomColors.ColorWhite,
                         ),
                       )),
                 ),
@@ -337,8 +338,8 @@ class _DashboardState extends State<Dashboard> {
             decoration: BoxDecoration(
                 shape: BoxShape.circle,
                 color: (Theme.of(context).brightness == Brightness.dark
-                        ? Color(0xFFF57700)
-                        : Color(0xFFF57700))
+                        ? CustomColors.OrangeColor
+                        : CustomColors.OrangeColor)
                     .withOpacity(_current == entry.key ? 1 : 0.4)),
           ),
         );
@@ -382,7 +383,7 @@ class _DashboardState extends State<Dashboard> {
               style: TextStyle(
                 fontSize: 20.sp,
                 fontWeight: FontWeight.w500,
-                color: Colors.white,
+                color: CustomColors.ColorWhite,
               ),
             ),
           ),
@@ -433,7 +434,7 @@ class _DashboardState extends State<Dashboard> {
                         style: TextStyle(
                           fontSize: 16.sp,
                           fontWeight: FontWeight.w600,
-                          color: Colors.white,
+                          color: CustomColors.ColorWhite,
                         ),
                       ),
                       Padding(
@@ -488,7 +489,7 @@ class _DashboardState extends State<Dashboard> {
             alignment: Alignment.topLeft,
             child: Container(
               decoration: BoxDecoration(
-                  color: Color(0xFFF57700),
+                  color: CustomColors.OrangeColor,
                   borderRadius:
                       BorderRadius.only(bottomRight: Radius.circular(30.r),topLeft: Radius.circular(30.r))),
               child: Padding(
@@ -498,7 +499,7 @@ class _DashboardState extends State<Dashboard> {
                   style: TextStyle(
                     fontSize: 10.sp,
                     fontWeight: FontWeight.w600,
-                    color: Colors.white,
+                    color: CustomColors.ColorWhite,
                   ),
                 ),
               ),
@@ -527,7 +528,7 @@ class _DashboardState extends State<Dashboard> {
                           style: TextStyle(
                             fontSize: 16.sp,
                             fontWeight: FontWeight.w600,
-                            color: Colors.white,
+                            color: CustomColors.ColorWhite,
                           ),
                         ),
                         Padding(
@@ -632,7 +633,7 @@ class _DashboardState extends State<Dashboard> {
                         quote,
                         style: TextStyle(
                             fontWeight: FontWeight.w600,
-                            color: Colors.white,
+                            color: CustomColors.ColorWhite,
                             fontSize: 17.sp),
                       ),
                     ),
@@ -710,7 +711,7 @@ class _DashboardState extends State<Dashboard> {
               ),
               Icon(
                 Icons.arrow_forward_ios_rounded,
-                color: Color(0xFF373A40),
+                color: CustomColors.IconColor,
                 size: 15.w,
               ),
             ],
@@ -731,10 +732,10 @@ class _DashboardState extends State<Dashboard> {
                   borderRadius: isGV
                       ? BorderRadius.circular(10.r)
                       : BorderRadius.circular(30.r),
-                  color: Colors.white,
+                  color: CustomColors.ColorWhite,
                   boxShadow: [
                     BoxShadow(
-                      color: Color(0xFF13161D).withOpacity(.04),
+                      color: CustomColors.ColorBlack2.withOpacity(.04),
                       spreadRadius: 0,
                       blurRadius: 5,
                       offset: Offset(0, Dimentions.widthMargin05),

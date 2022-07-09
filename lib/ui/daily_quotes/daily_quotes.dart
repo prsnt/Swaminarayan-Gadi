@@ -1,3 +1,4 @@
+import 'package:appstructure/utils/custom_colors.dart';
 import 'package:flutter/material.dart';
 
 class DailyQuotes extends StatefulWidget {
@@ -11,7 +12,7 @@ class _DailyQuotesState extends State<DailyQuotes> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFFFFAF4),
+      backgroundColor: CustomColors.ColorWhite,
       body: SafeArea(
         child: Container(
             child: ListView.builder(
@@ -64,7 +65,7 @@ class _DailyQuotesState extends State<DailyQuotes> {
                       alignment: AlignmentDirectional.centerEnd,
                       child: Icon(
                         Icons.arrow_forward_ios_rounded,
-                        color: Color(0xFFFF8240),
+                        color: CustomColors.OrangeColor,
                         size: 16.0,
                       ),
                     ),

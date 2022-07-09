@@ -2,10 +2,11 @@ import 'dart:async';
 
 import 'package:appstructure/constants/assets.dart';
 import 'package:appstructure/constants/colors.dart';
-import 'package:appstructure/routes.dart';
+import 'package:appstructure/routes/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:appstructure/utils/dimentions.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 
 class SplashScreen extends StatefulWidget {
   @override
@@ -25,7 +26,10 @@ class SplashScreenState extends State<SplashScreen>
   }
 
   Future<void> navigationPage() async {
-    Navigator.of(context).pushReplacementNamed(Routes.tabScreen);
+    Get.to(Routes.dashboardScreen,
+        duration: Duration(seconds: 1),
+        transition: Transition.leftToRight);
+    //Navigator.of(context).pushReplacementNamed(Routes.dashboardScreen);
   }
 
   @override

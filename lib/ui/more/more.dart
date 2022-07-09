@@ -1,3 +1,4 @@
+import 'package:appstructure/utils/custom_colors.dart';
 import 'package:appstructure/utils/dimentions.dart';
 import 'package:appstructure/utils/widgets_dir.dart';
 import 'package:flutter/material.dart';
@@ -125,7 +126,7 @@ class _MoreState extends State<More> {
                 padding: EdgeInsets.only(left: Dimentions.widthMargin10),
                 child: Icon(
                   Icons.arrow_forward_ios_rounded,
-                  color: Color(0xFF373A40),
+                  color:CustomColors.IconColor,
                   size: Dimentions.widthMargin15,
                 ),
               ),

@@ -1,6 +1,8 @@
+import 'package:appstructure/routes/app_pages.dart';
+import 'package:appstructure/ui/News/newslist.dart';
+import 'package:appstructure/ui/daily_darshan.dart';
 import 'package:appstructure/ui/daily_quotes/daily_quotes.dart';
-import 'package:appstructure/ui/home/dash.dart';
-import 'package:appstructure/ui/home/tab_home_screen.dart';
+import 'package:appstructure/ui/home/home.dart';
 import 'package:appstructure/ui/more/more.dart';
 import 'package:appstructure/ui/splash/splash.dart';
 import 'package:appstructure/utils/size_config.dart';
@@ -9,6 +11,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:get_it/get_it.dart';
 import 'package:provider/provider.dart';
 import 'bloc/employee_cubit.dart';
@@ -19,7 +22,7 @@ import 'data/sharedpref/constants/preferences.dart';
 import 'data/sharedpref/shared_preference_helper.dart';
 import 'locale/app_localisations.dart';
 import 'repository/employee_repository.dart';
-import 'routes.dart';
+import 'routes/routes.dart';
 import 'utils/app_bottom_navigation.dart';
 
 Future<void> main() async {
@@ -47,7 +50,7 @@ class MyApp extends StatelessWidget {
       minTextAdapt: true,
       splitScreenMode: true,
       builder: (context , child) {
-        return MaterialApp(
+        return GetMaterialApp(
           title: 'Swaminarayan Gadi',
           debugShowCheckedModeBanner: false,
           locale: locale,
@@ -77,6 +80,7 @@ class MyApp extends StatelessWidget {
             }
             return supportedLocales.first;
           },
+          initialRoute: Routes.dailydarshan,
           darkTheme: ThemeData(
             brightness: Brightness.dark,
             fontFamily: 'Outfit',
@@ -87,7 +91,7 @@ class MyApp extends StatelessWidget {
               headline5: TextStyle(fontSize: 14.sp, fontWeight: FontWeight.w600,color: Color(0xFF9E9A89)),
               bodyText2: TextStyle(fontSize: 16.sp, color: Color(0xFF9E9A89)),
               bodyText1: TextStyle(fontSize: 18.sp, color: Color(0xFF9E9A89)),
-              button: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.w400,color: Color(0xFF0D0D0D)),
+              button: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.w500,color: Color(0xFF0D0D0D)),
             ),
             iconTheme: const IconThemeData(
               color: Colors.white54,
@@ -99,19 +103,19 @@ class MyApp extends StatelessWidget {
             fontFamily: 'Outfit',
             textTheme: TextTheme(
               headline1: TextStyle(fontSize: 36.sp, fontWeight: FontWeight.bold,color: Color(0xFF373A40)),
-              headline2: TextStyle(fontSize: 24.sp, fontStyle: FontStyle.italic,color: Color(0xFF373A40)),
+              headline2: TextStyle(fontSize: 24.sp, fontWeight: FontWeight.w500,color: Color(0xFF373A40)),
               headline4: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.bold,color: Color(0xFF373A40)),
               headline5: TextStyle(fontSize: 14.sp, fontWeight: FontWeight.w600,color: Color(0xFF373A40)),
               bodyText2: TextStyle(fontSize: 16.sp, color: Color(0xFF373A40)),
-              bodyText1: TextStyle(fontSize: 18.sp, color: Color(0xFF373A40)),
+              bodyText1: TextStyle(fontSize: 20.sp, fontWeight: FontWeight.w500,color: Color(0xFF373A40)),
+              caption: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.w500,color: Color(0xFF373A40)),
               button: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.w400,color: Color(0xFF373A40)),
             ),
             scaffoldBackgroundColor: const Color(0xFFFFFAF4),
             brightness: Brightness.light,
             primarySwatch: AppColors.themeColor,
           ),
-          home: Dashboard(),
-          routes: Routes.routes,
+          getPages: AppPages.list,
         );
       },
       child: const More(),
@@ -121,128 +125,6 @@ class MyApp extends StatelessWidget {
   /*@override
   _MyAppState createState() => _MyAppState();*/
 }
-
-CupertinoThemeData get _lightTheme =>
-    const CupertinoThemeData(brightness: Brightness.light,);
-
-CupertinoThemeData get _darkTheme => const CupertinoThemeData(
-  brightness: Brightness.dark,
-);
-
-class _MyAppState extends State with WidgetsBindingObserver {
-  Locale locale = const Locale('en');
-  Brightness? _brightness;
-
-  @override
-  void initState() {
-    SizeConfig().init(context);
-    WidgetsBinding.instance.addObserver(this);
-    _brightness = WidgetsBinding.instance.window.platformBrightness;
-    super.initState();
-    getData();
-  }
-
-  @override
-  void dispose() {
-    WidgetsBinding.instance.removeObserver(this);
-    super.dispose();
-  }
-
-  @override
-  void didChangePlatformBrightness() {
-    if (mounted) {
-      setState(() {
-        _brightness = WidgetsBinding.instance.window.platformBrightness;
-      });
-    }
-
-    super.didChangePlatformBrightness();
-  }
-
-  Future refresh(Locale newLocale) async {
-    locale = newLocale;
-    await SharedPreferenceHelper()
-        .setValue(Preferences.languageCode, newLocale.languageCode);
-    setState(() {});
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    ScreenUtil.init(context, designSize: const Size(360, 690));
-    return MultiProvider(
-      providers: [
-        ChangeNotifierProvider.value(value: BottomNavigatorProvider())
-      ],
-      child: MultiBlocProvider(
-        providers: [
-          BlocProvider(
-            create: (context) => EmployeeCubit(),
-          ),
-        ],
-        child: MaterialApp(
-          title: 'Swaminarayan Gadi',
-          debugShowCheckedModeBanner: false,
-          locale: locale,
-          localizationsDelegates: const [
-            AppLocalizations.delegate,
-            GlobalMaterialLocalizations.delegate,
-            GlobalCupertinoLocalizations.delegate,
-            GlobalWidgetsLocalizations.delegate
-          ],
-          supportedLocales: const [
-            Locale('en', ''), // English, no country code
-            Locale('hi', ''), // Hindi, no country code
-          ],
-          localeResolutionCallback: (deviceLocale, supportedLocales) {
-            application.saveDeviceLocale(deviceLocale!);
-            for (final supportedLocale in supportedLocales) {
-              if (supportedLocale.languageCode == deviceLocale.languageCode) {
-                if (supportedLocale.countryCode != null &&
-                    supportedLocale.countryCode!.isNotEmpty) {
-                  if (supportedLocale.countryCode == deviceLocale.countryCode) {
-                    return supportedLocale;
-                  }
-                } else {
-                  return supportedLocale;
-                }
-              }
-            }
-            return supportedLocales.first;
-          },
-          darkTheme: ThemeData(
-            brightness: Brightness.dark,
-          ),
-          theme: ThemeData(
-            fontFamily: 'Outfit',
-            textTheme: TextTheme(
-              headline1: TextStyle(fontSize: 36.sp, fontWeight: FontWeight.bold,color: Color(0xFF373A40)),
-              headline2: TextStyle(fontSize: 24.sp, fontStyle: FontStyle.italic,color: Color(0xFF373A40)),
-              headline4: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.bold,color: Color(0xFF373A40)),
-              headline5: TextStyle(fontSize: 14.sp, fontWeight: FontWeight.w600,color: Color(0xFF373A40)),
-              bodyText2: TextStyle(fontSize: 16.sp, color: Color(0xFF373A40)),
-              bodyText1: TextStyle(fontSize: 18.sp, color: Color(0xFF373A40)),
-              button: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.w400,color: Color(0xFF373A40)),
-            ),
-            scaffoldBackgroundColor: const Color(0xFFFFFAF4),
-            brightness: Brightness.light,
-            primarySwatch: AppColors.themeColor,
-          ),
-          home: const Dashboard(),
-          routes: Routes.routes,
-        ),
-      ),
-    );
-  }
-
-  Future<void> getData() async {
-    final _locale = await application.fetchLocale();
-    locale = _locale!;
-    if (mounted) {
-      setState(() {});
-    }
-  }
-}
-
 
 
 class PreferenceKeys {}
