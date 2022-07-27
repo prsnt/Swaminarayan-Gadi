@@ -10,5 +10,8 @@ class CustomColors{
   static const ColorBlack2 =  Color(0xFF13161D);
   static const Gradient1 =  Color(0xFFFF7455);
   static const Gradient2 =  Color(0xFFED3237);
+  static const Gradient3 =  Color(0xFFFF8240);
+  static const Gradient4 =  Color(0x009E400E);//Daily darshan top view
+  static const Gradient5 =  Color(0x669E400E);//Daily darshan top view
   static const IconColor =  Color(0xFF373A40);
 }

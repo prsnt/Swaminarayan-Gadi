@@ -6,10 +6,11 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../utils/widgets_dir.dart';
 
 class AppBarCustom extends StatelessWidget {
+  Function callback;
   final String? title;
   final bool? isNews;
 
-  AppBarCustom({Key? key,this.title,this.isNews}) : super(key: key);
+  AppBarCustom({Key? key,this.title,this.isNews,required this.callback}) : super(key: key);
 
 
   @override
@@ -24,7 +25,7 @@ class AppBarCustom extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              WidgetsDir().backBtnNoMargin(),
+              WidgetsDir().backBtnNoMargin(() => callback),
               Padding(
                 padding: EdgeInsets.only(left: Dimentions.widthMargin10),
                 child: Text(title!, style: Theme.of(context).textTheme.headline4),
@@ -33,8 +34,8 @@ class AppBarCustom extends StatelessWidget {
           ),
           Row(
             children: [
-              isNews! ? WidgetsDir().backBtnNoMargin() : Container(),
-              isNews! ? WidgetsDir().backBtnNoMargin() : Container(),
+              if (isNews!) WidgetsDir().backBtnNoMargin(() => callback) else Container(),
+              if (isNews!) WidgetsDir().backBtnNoMargin(() => callback) else Container(),
             ],
           ),
         ],

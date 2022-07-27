@@ -4,6 +4,7 @@ import 'package:appstructure/utils/custom_colors.dart';
 import 'package:appstructure/utils/dimentions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get_rx/src/rx_typedefs/rx_typedefs.dart';
 
 class WidgetsDir  {
   Container backBtn() {
@@ -16,12 +17,15 @@ class WidgetsDir  {
     );
   }
 
-  Container backBtnNoMargin() {
-    return Container(
-      child: Image.asset('assets/images/back_btn.png',
-          height: Dimentions.widthMargin50,
-          width: Dimentions.widthMargin50,
-          fit: BoxFit.fill),
+  Widget backBtnNoMargin(Function callback) {
+    return GestureDetector(
+      onTap: () => callback,
+      child: Container(
+        child: Image.asset('assets/images/back_btn.png',
+            height: Dimentions.widthMargin50,
+            width: Dimentions.widthMargin50,
+            fit: BoxFit.fill),
+      ),
     );
   }
 

@@ -1,6 +1,8 @@
 import 'package:appstructure/routes/routes.dart';
-import 'package:appstructure/ui/daily_darshan.dart';
+import 'package:appstructure/ui/News/newslist.dart';
+import 'package:appstructure/ui/daily_darshan/daily_darshan.dart';
 import 'package:appstructure/ui/dashboard/dashboard_page.dart';
+import 'package:appstructure/ui/live_darshan/live_darshan.dart';
 import 'package:get/get_navigation/src/routes/get_route.dart';
 
 import '../ui/dashboard/dashboard_binding.dart';
@@ -15,6 +17,16 @@ class AppPages {
     GetPage(
       name: Routes.dailydarshan,
       page: () => DailyDarshan(),
+      //binding: DashboardBinding(),
+    ),
+    GetPage(
+      name: Routes.livedarshan,
+      page: () => LiveDarshan(),
+      //binding: DashboardBinding(),
+    ),
+    GetPage(
+      name: Routes.newslist,
+      page: () => NewsListing(),
       //binding: DashboardBinding(),
     ),
   ];

@@ -9,5 +9,7 @@ class Routes {
   static const String dashboardScreen = '/dashboardScreen';
   static const String splashScreen = '/splashScreen';
   static const String dailydarshan = '/dailydarshan';
+  static const String livedarshan = '/livedarshan';
+  static const String newslist = '/newslist';
 
 }
