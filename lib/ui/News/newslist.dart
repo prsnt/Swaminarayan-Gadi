@@ -31,7 +31,11 @@ class _NewsListingState extends State<NewsListing> {
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisSize: MainAxisSize.min,
           children: [
-            AppBarCustom(title: "News",isNews: true,),
+            AppBarCustom(title: "News",isNews: true,callback: (){
+              ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                content: Text("Sending Message"),
+              ));
+            }),
             //searchBox()
             Padding(
               padding: EdgeInsets.only(left: Dimentions.widthMargin15),

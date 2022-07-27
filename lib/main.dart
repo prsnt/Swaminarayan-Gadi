@@ -1,6 +1,6 @@
 import 'package:appstructure/routes/app_pages.dart';
 import 'package:appstructure/ui/News/newslist.dart';
-import 'package:appstructure/ui/daily_darshan.dart';
+import 'package:appstructure/ui/daily_darshan/daily_darshan.dart';
 import 'package:appstructure/ui/daily_quotes/daily_quotes.dart';
 import 'package:appstructure/ui/home/home.dart';
 import 'package:appstructure/ui/more/more.dart';
@@ -80,7 +80,7 @@ class MyApp extends StatelessWidget {
             }
             return supportedLocales.first;
           },
-          initialRoute: Routes.dailydarshan,
+          initialRoute: Routes.newslist,
           darkTheme: ThemeData(
             brightness: Brightness.dark,
             fontFamily: 'Outfit',
