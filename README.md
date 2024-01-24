@@ -1,7 +1,5 @@
 # Swaminarayan Gadi Application
 
-# Flutter Project Readme
-
 ## Project Overview
 
 Welcome to our Flutter project! This cross-platform mobile application is built using Flutter, a UI toolkit developed by Google, to create natively compiled applications for mobile, web, and desktop from a single codebase.
