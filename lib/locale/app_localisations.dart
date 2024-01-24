@@ -12,8 +12,7 @@ class AppLocalizations {
 
   late final Locale locale;
 
-  static const LocalizationsDelegate<AppLocalizations> delegate =
-      _AppLocalizationsDelegate();
+  static const LocalizationsDelegate<AppLocalizations> delegate = _AppLocalizationsDelegate();
 
   static AppLocalizations? of(BuildContext context) {
     return Localizations.of<AppLocalizations>(context, AppLocalizations);
@@ -23,10 +22,8 @@ class AppLocalizations {
 
   Future<bool> load() async {
     // Load the language JSON file from the "lang" folder
-    final String jsonString =
-        await rootBundle.loadString('lang/${locale.languageCode}.json');
-    final Map<String, dynamic> jsonMap =
-        json.decode(jsonString) as Map<String, dynamic>;
+    final String jsonString = await rootBundle.loadString('strings/${locale.languageCode}.json');
+    final Map<String, dynamic> jsonMap = json.decode(jsonString) as Map<String, dynamic>;
 
     _localizedStrings = jsonMap.map((key, value) {
       return MapEntry(key, value.toString());
@@ -40,8 +37,7 @@ class AppLocalizations {
   }
 }
 
-class _AppLocalizationsDelegate
-    extends LocalizationsDelegate<AppLocalizations> {
+class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {
   const _AppLocalizationsDelegate();
 
   @override
@@ -71,28 +67,23 @@ class Application {
 
   static final Application _application = Application._internal();
 
-  final List<String> supportedLanguages = ['English', 'Spanish'];
+  final List<String> supportedLanguages = ['English', 'Hindi'];
 
-  final List<String> supportedLanguagesCodes = ['en', 'es'];
+  final List<String> supportedLanguagesCodes = ['en', 'hi'];
 
   //returns the list of supported Locales
-  Iterable<Locale> supportedLocales() =>
-      supportedLanguagesCodes.map<Locale>((language) => Locale(language, ''));
+  Iterable<Locale> supportedLocales() => supportedLanguagesCodes.map<Locale>((language) => Locale(language, ''));
 
   Future<Locale?> fetchLocale() async {
-    final langCode = await SharedPreferenceHelper()
-            .getValue(Preferences.languageCode) as String;
+    final langCode = await SharedPreferenceHelper().getValue(Preferences.languageCode) as String;
     if (langCode.isEmpty) {
-      return const Locale('en', 'en');
+      return const Locale('en', '');
     }
     return Locale(langCode, langCode);
   }
 
   Future<void> saveDeviceLocale(Locale locale) async {
-    final langCode = locale.languageCode;
-    await SharedPreferenceHelper()
-        .setValue(Preferences.languageCode, locale.languageCode);
-    print('Saved Language Code : $langCode');
+    await SharedPreferenceHelper().setValue(Preferences.languageCode, locale.languageCode);
   }
 }
 

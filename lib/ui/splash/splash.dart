@@ -1,65 +1,111 @@
 import 'dart:async';
+import 'dart:convert';
+import 'dart:io';
 
-import 'package:appstructure/constants/assets.dart';
-import 'package:appstructure/constants/colors.dart';
-import 'package:appstructure/routes/routes.dart';
-import 'package:flutter/material.dart';
+import 'package:appstructure/data/network/apis/api_services.dart';
+import 'package:appstructure/notification_services.dart';
+import 'package:appstructure/utils/app_constant.dart';
 import 'package:appstructure/utils/dimentions.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
+import 'package:flutter_udid/flutter_udid.dart';
+import 'package:get_storage/get_storage.dart';
+import 'package:http/http.dart' as http;
+import 'package:package_info_plus/package_info_plus.dart';
+
+import '../../bottombar/bottom_footer_navigation.dart';
 
 class SplashScreen extends StatefulWidget {
   @override
   SplashScreenState createState() => SplashScreenState();
 }
 
-class SplashScreenState extends State<SplashScreen>
-    with SingleTickerProviderStateMixin {
-  var _visible = true;
+class SplashScreenState extends State<SplashScreen> with SingleTickerProviderStateMixin {
+  NotificationServices notificationServices = NotificationServices();
 
-  late AnimationController _animationController;
-  late Animation<double> _animation;
+  PackageInfo _packageInfo = PackageInfo(
+    appName: 'Unknown',
+    packageName: 'Unknown',
+    version: 'Unknown',
+    buildNumber: 'Unknown',
+    buildSignature: 'Unknown',
+  );
+  late String platformVersion, imeiNo = '', modelName = '', manufacturer = '', deviceName = '', productName = '', cpuType = '', hardware = '';
+  var apiLevel;
 
   Future<Timer> startTime() async {
     const _duration = Duration(seconds: 3);
-    return Timer(_duration, navigationPage);
+    return Timer(_duration, userToken);
   }
 
-  Future<void> navigationPage() async {
-    Get.to(Routes.dashboardScreen,
-        duration: Duration(seconds: 1),
-        transition: Transition.leftToRight);
-    //Navigator.of(context).pushReplacementNamed(Routes.dashboardScreen);
+  Future<void> userToken() async {
+    notificationServices.requestNotificationPermission();
+    //notificationServices.forgroundMessage();
+    notificationServices.firebaseInit(context);
+    notificationServices.setupInteractMessage(context);
+    Map<String, String> requestBody;
+
+    final udid = await FlutterUdid.udid;
+    final String firebaseToken = await notificationServices.getDeviceToken();
+    requestBody = {
+      'deviceKey': udid,
+      'androidKey': udid,
+      'mModel': '',
+      'mBrand': '',
+      'mManufacturer': '',
+      'mProduct': '',
+      'mAndroid': '',
+      'mAPILevel': '1.1',
+      'mVersionRelease': '',
+      'DeviceType': Platform.isAndroid ? 'Android' : 'IOS',
+      'PushTokan': firebaseToken,
+      'login_by': '',
+      'displayOrder': '0',
+      'status': 'active'
+    };
+
+    final box = GetStorage();
+    box.write('FirebaseToken', firebaseToken);
+    userTokenApiCall(requestBody);
   }
 
-  @override
-  void dispose() {
-    super.dispose();
-    _animation.removeListener(() {});
+  Future<void> userTokenApiCall(Map<String, String> requestBody) async {
+    try {
+      print('Request Body: $requestBody');
+      const url = '${AppConstants.BASE_URL}/user-token';
+      final response = await http.post(
+        Uri.parse(url),
+        headers: {HttpHeaders.contentTypeHeader: 'application/json', 'accept': '*/*', 'x-access-token': AppConstants.Token},
+        body: jsonEncode(requestBody),
+      );
+      if (response.statusCode == 201) {
+        Navigator.pushAndRemoveUntil(
+          context,
+          MaterialPageRoute(builder: (context) => const BottomFooterNavigation()),
+          (route) => false,
+        );
+      }
+    } catch (e) {
+      showToastMessage(e.toString());
+    }
   }
 
   @override
   void initState() {
     super.initState();
-    _animationController =
-        AnimationController(vsync: this, duration: const Duration(seconds: 2));
-    _animation =
-        CurvedAnimation(parent: _animationController, curve: Curves.easeOut);
+    _initPackageInfo();
+    startTime();
+  }
 
-    _animation.addListener(() => setState(() {}));
-    _animationController.forward();
-
-    //startTime();
-
+  Future<void> _initPackageInfo() async {
+    final info = await PackageInfo.fromPlatform();
     setState(() {
-      _visible = !_visible;
+      _packageInfo = info;
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    double screenWidth = MediaQuery.of(context).size.width;
-    double screenHeight = MediaQuery.of(context).size.height;
     return Scaffold(
       body: Stack(
         children: [
@@ -76,8 +122,9 @@ class SplashScreenState extends State<SplashScreen>
                 child: Column(
                   children: [
                     FractionallySizedBox(
-                        widthFactor: 0.4,
-                        child: Image.asset('assets/images/logo.png')),
+                      widthFactor: 0.4,
+                      child: Image.asset('assets/images/logo.png'),
+                    ),
                     Padding(
                       padding: EdgeInsets.only(top: Dimentions.heightMargin25),
                       child: Image.asset('assets/images/app_name.png'),
@@ -92,14 +139,15 @@ class SplashScreenState extends State<SplashScreen>
             alignment: Alignment.bottomCenter,
           ),
           Align(
-              alignment: Alignment.bottomCenter,
-              child: Padding(
-                padding: EdgeInsets.only(bottom: Dimentions.heightMargin25),
-                child: Text(
-                  'Version 1.5',
-                  style: TextStyle(color: Colors.white, fontSize: 16.sp),
-                ),
-              )),
+            alignment: Alignment.bottomCenter,
+            child: Padding(
+              padding: EdgeInsets.only(bottom: Dimentions.heightMargin25),
+              child: Text(
+                'Version ${_packageInfo.version}',
+                style: TextStyle(color: Colors.white, fontSize: 16.sp),
+              ),
+            ),
+          ),
         ],
       ),
     );

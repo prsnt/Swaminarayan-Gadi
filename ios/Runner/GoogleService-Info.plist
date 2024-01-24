@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>724076654676-5qge22sndq5lg9fp5pondad7hoha9job.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.724076654676-5qge22sndq5lg9fp5pondad7hoha9job</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>724076654676-keb3rgppbgs8bile04i7pfnpbm6fb459.apps.googleusercontent.com</string>
+	<key>API_KEY</key>
+	<string>AIzaSyDVwRH9C-7BeV9nzNU9kyWrtoLJzn2sAjA</string>
+	<key>GCM_SENDER_ID</key>
+	<string>724076654676</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.swaminarayangadi.app</string>
+	<key>PROJECT_ID</key>
+	<string>sgadi-web-92209</string>
+	<key>STORAGE_BUCKET</key>
+	<string>sgadi-web-92209.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:724076654676:ios:841ce4bfc0b69db2</string>
+	<key>DATABASE_URL</key>
+	<string>https://sgadi-web-92209.firebaseio.com</string>
+</dict>
+</plist>

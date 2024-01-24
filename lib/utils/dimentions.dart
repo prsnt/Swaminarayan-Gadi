@@ -1,5 +1,6 @@
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+// ignore: avoid_classes_with_only_static_members
 class Dimentions {
   static double parentMarginWidth = 0.2.sw;
   static double parentMarginHeight = 0.2.sh;

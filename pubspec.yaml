@@ -15,10 +15,12 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 # In iOS, build-name is used as CFBundleShortVersionString while build-number used as CFBundleVersion.
 # Read more about iOS versioning at
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
-version: 1.0.0+1
+version: 1.10.4
 
 environment:
-  sdk: '>=2.17.1 <3.0.0'
+  #sdk: '>=2.17.1 <3.0.0'
+  #sdk: '>=2.19.5 <3.0.0'
+  sdk: '>=3.1.0 <4.0.0'
 
 dependencies:
   flutter:
@@ -30,25 +32,69 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.3
-  firebase_auth: ^3.3.19
-  cloud_firestore: ^3.1.17
-  firebase_core: ^1.3.0
   provider: ^6.0.3
-  pin_input_text_field: ^4.1.0
   shared_preferences: ^2.0.6
   http: ^0.13.3
-  connectivity: ^3.0.6
-  dio:
-  get_it:
-  flutter_bloc:
-  dartz: ^0.10.1
-  flutter_screenutil: ^5.0.0+2
-  gen_lang: 0.1.3
-  intl: ^0.17.0
+  #flutter_screenutil: ^5.0.0+2
+  flutter_screenutil: ^5.8.4
+  #gen_lang: ^0.1.3
+  #intl: ^0.17.0
+  intl: ^0.18.0
   carousel_slider: ^4.1.1
   get: ^4.6.5
   animated_bottom_navigation_bar: ^1.0.1
-
+  dots_indicator: ^3.0.0
+  persistent_bottom_nav_bar_v2: ^4.2.4
+  flutter_multi_select_items: ^0.4.2
+  google_maps_flutter: ^2.1.10
+  flutter_cached_pdfview: ^0.4.1
+  cached_network_image: ^3.2.1
+  url_launcher: ^6.1.5
+  flutter_share: ^2.0.0
+  #flutter_html: ^2.2.1
+  flutter_html: ^3.0.0-alpha.6
+  flutter_advanced_seekbar: ^0.0.2
+  permission_handler: ^10.0.0
+  path_provider: ^2.0.11
+  sn_progress_dialog: ^1.1.3
+  get_storage: ^2.0.3
+  #fijkplayer: ^0.10.1
+  #fijkplayer_new: ^0.10.2
+  full_screen_image_null_safe: ^2.0.0
+  youtube_player_flutter: ^8.1.0
+  dialogs: ^0.0.7
+  open_filex: ^4.1.1
+  html: ^0.15.0
+  photo_view: ^0.14.0
+  webview_flutter: ^4.2.2
+  #version_check: ^0.3.0
+  version_check: ^0.4.0
+  visibility_detector: ^0.4.0+2
+  open_store: ^0.5.0
+  file: ^6.1.4
+  flutter_swiper_null_safety: ^1.0.2
+  #wakelock: ^0.6.2
+  flu_wake_lock: ^0.0.2
+  audio_video_progress_bar: ^1.0.1
+  just_audio: ^0.9.32
+  just_audio_background: ^0.0.1-beta.9
+  rxdart: ^0.27.7
+  flutter_cache_manager: ^3.3.0
+  firebase_core: ^2.9.0
+  firebase_messaging: ^14.4.0
+  flutter_local_notifications: ^14.1.1
+  app_settings: ^4.2.0
+  firebase_analytics: ^10.2.1
+  #device_info_plus: ^8.2.1
+  flutter_udid: ^2.0.1
+  fluttertoast: ^8.2.1
+  flutter_web_browser: ^0.17.1
+  flutter_timezone: ^1.0.4
+  image: ^4.0.16
+  flutter_inappwebview: ^5.7.2+3
+  liplayer: ^0.0.2
+  preload_page_view: ^0.2.0
+    
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -71,7 +117,9 @@ flutter:
   assets:
     - assets/images/
     - lang/
+    - assets/strings/
     - assets/strings/en.json
+    - assets/strings/hi.json
 
   fonts:
     - family: Outfit

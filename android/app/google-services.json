@@ -1,0 +1,63 @@
+{
+  "project_info": {
+    "project_number": "724076654676",
+    "firebase_url": "https://sgadi-web-92209.firebaseio.com",
+    "project_id": "sgadi-web-92209",
+    "storage_bucket": "sgadi-web-92209.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:724076654676:android:9f3bde7236203d05",
+        "android_client_info": {
+          "package_name": "info.sgadi.shangardarshan"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "724076654676-keb3rgppbgs8bile04i7pfnpbm6fb459.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "info.sgadi.shangardarshan",
+            "certificate_hash": "89eaf3843768161ed61d9a4cd1dd8e9a8c7310ae"
+          }
+        },
+        {
+          "client_id": "724076654676-nqmvo1t8c1ugpeo29fqegvehmhkav0gg.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "info.sgadi.shangardarshan",
+            "certificate_hash": "666a8e1e39d770933aa943f36386758b162c7e1c"
+          }
+        },
+        {
+          "client_id": "724076654676-bsvckl1muipcur0igs2sl6uaj25rumt4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBwzhU3wqs4YaRlIgcfuFn5SmGWo_nK_SI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "724076654676-27jn0g2e50v4tmsk46vmntujnoirktqp.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "724076654676-5qge22sndq5lg9fp5pondad7hoha9job.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.swaminarayangadi.app"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
